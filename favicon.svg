@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- 标签页图标：🦄
+       用 <text> 而不是画出来的路径，这样浏览器拿系统自带的 emoji 字体渲染 ——
+       macOS 上就是 Apple 的那只，Windows 上是 Segoe 的那只，跟用户自己
+       输入 🦄 看到的一致。不支持 SVG 图标的浏览器会退回 favicon.ico。
+       dominant-baseline 各家实现有差异，所以用 y 坐标直接定位，不依赖它。 -->
+  <text x="16" y="25" font-size="28" text-anchor="middle">&#x1F984;</text>
+</svg>

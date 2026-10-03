@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>张帅帅 | Shuaishuai Zhang</title>
+<meta name="description" content="张帅帅 - 北京工商大学硕士研究生，研究方向为大模型后训练与强化学习、模型评测与奖励作弊诊断、智能教育。">
+<meta name="keywords" content="强化学习, 大模型, RLVR, 模型评测, 智能教育, reinforcement learning, LLM evaluation">
+<meta name="author" content="张帅帅 Shuaishuai Zhang">
+<link rel="canonical" href="https://010bill.github.io/">
+
+<!-- 图标。SVG 版里是一个 <text>🦄，由系统 emoji 字体渲染，所以各平台
+     显示的都是本地那只独角兽；不认 SVG 图标的浏览器退回 ico（Noto 版，
+     已按 16/32/48 三档单独降采样）。两行的顺序不能反，浏览器优先用后面
+     能识别的那条。 -->
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- 分享卡片（微信 / Twitter / Slack 里的预览） -->
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://010bill.github.io/">
+<meta property="og:title" content="张帅帅 | Shuaishuai Zhang">
+<meta property="og:description" content="北京工商大学硕士研究生。研究方向：大模型后训练与强化学习、模型评测与奖励作弊诊断、智能教育。">
+<meta property="og:image" content="https://010bill.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_CN">
+<meta property="profile:first_name" content="帅帅">
+<meta property="profile:last_name" content="张">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="张帅帅 | Shuaishuai Zhang">
+<meta name="twitter:description" content="北京工商大学硕士研究生。研究方向：大模型后训练与强化学习、模型评测与奖励作弊诊断、智能教育。">
+<meta name="twitter:image" content="https://010bill.github.io/og-image.jpg">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #08080a;
+    --surface: #101013;
+    --ink: #f4f4f7;
+    --body: #cdcdd5;
+    --mute: #9d9da8;
+    --line: rgba(255,255,255,.12);
+    --line-hi: rgba(255,255,255,.3);
+    --accent: #8ab4f8;
+    --glow: rgba(138,180,248,.15);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    /* 主题相关的零散色值抽成变量，浅色模式才好整体替换 */
+    --nav-bg: rgba(8,8,10,.82);
+    --hover-bg: rgba(255,255,255,.06);
+    --hover-ink: #fff;
+    --tint-1: rgba(255,255,255,.022);
+    --tint-2: rgba(255,255,255,.03);
+    --tint-3: rgba(255,255,255,.028);
+    --tint-4: rgba(255,255,255,.04);
+    --shadow-lg: 0 18px 46px rgba(0,0,0,.55);
+    --shadow-md: 0 14px 34px rgba(0,0,0,.42);
+    --shadow-sm: 0 10px 26px rgba(0,0,0,.4);
+    --shadow-card: 0 16px 38px rgba(0,0,0,.5);
+    --amb-1: rgba(138,180,248,.085);
+    --amb-2: rgba(163,124,255,.055);
+    --img-filter: brightness(.94) saturate(.95);
+    --shot-filter: brightness(.9) saturate(.95);
+    --hl-bg: rgba(138,180,248,.16);
+    --hl-ink: #cfe0fd;
+    --pub-border: #e3e3e8;
+    --pub-border-hi: #b9c6dc;
+    --pub-bg: #fff;
+    --pub-ink: #14141a;
+    --pub-body: #3c3c46;
+    --pub-mute: #6c6c78;
+    --pub-uline: #9aa3b2;
+  }
+
+  /* ---------- 浅色模式 ---------- */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    /* 暖灰白：纸感底色，避免纯白刺眼 */
+    --bg: #f4f1ea;
+    --surface: #fbf9f4;
+    --ink: #1f1c16;
+    --body: #45403a;
+    --mute: #6f695f;
+    --line: rgba(40,32,20,.14);
+    --line-hi: rgba(40,32,20,.3);
+    --accent: #2b5490;
+    --glow: rgba(43,84,144,.08);
+    --nav-bg: rgba(244,241,234,.86);
+    --hover-bg: rgba(40,32,20,.055);
+    --hover-ink: #1f1c16;
+    --tint-1: rgba(40,32,20,.028);
+    --tint-2: rgba(40,32,20,.042);
+    --tint-3: rgba(40,32,20,.036);
+    --tint-4: rgba(40,32,20,.048);
+    --shadow-lg: 0 18px 44px rgba(52,42,28,.15);
+    --shadow-md: 0 14px 32px rgba(52,42,28,.11);
+    --shadow-sm: 0 10px 24px rgba(52,42,28,.11);
+    --shadow-card: 0 14px 32px rgba(52,42,28,.13);
+    --amb-1: rgba(196,150,86,.10);
+    --amb-2: rgba(43,84,144,.05);
+    --img-filter: none;
+    --shot-filter: none;
+    /* 论文框也跟着走暖调，纯白会从暖底上「跳」出来 */
+    --pub-bg: #fdfbf6;
+    --pub-ink: #1f1c16;
+    --pub-body: #46413a;
+    --pub-mute: #78726a;
+    --pub-uline: #a89f91;
+    --pub-border: #e4ddd0;
+    --pub-border-hi: #b6aa93;
+    /* 关键词高亮：浅色下必须用深字，否则浅蓝底配浅蓝字直接看不见 */
+    --hl-bg: rgba(43,84,144,.11);
+    --hl-ink: #1d3f6e;
+  }
+  /* 浅色下论文框和页面底色接近，补一点暖投影撑出层次 */
+  :root[data-theme="light"] #pubs .pub.card {
+    box-shadow: 0 1px 2px rgba(52,42,28,.055), 0 6px 18px rgba(52,42,28,.05);
+  }
+  /* 浅色下星场是深色点，放在白底上会脏，直接隐藏 */
+  :root[data-theme="light"] #dots { display: none; }
+  /* 切换主题时才挂上过渡：直接写在元素上会被各自的 hover transition 覆盖，
+     所以点击瞬间给 html 加 .theming，380ms 后摘掉。 */
+  :root.theming, :root.theming * {
+    transition: background-color .34s var(--ease), border-color .34s var(--ease),
+                color .34s var(--ease), box-shadow .34s var(--ease) !important;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--body);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* 顶部环境光 */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(1000px 460px at 16% -14%, var(--amb-1), transparent 60%),
+      radial-gradient(820px 420px at 90% -8%, var(--amb-2), transparent 60%);
+  }
+  /* 星点层：慢漂移 + 呼吸 + 光标轻推 */
+  #dots {
+    position: fixed; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    display: block; pointer-events: none;
+    opacity: 1;
+    /* 上下边缘只收一点点，别再吃掉整体亮度 */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.88) 0%, #000 10%, #000 90%, rgba(0,0,0,.88) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.88) 0%, #000 10%, #000 90%, rgba(0,0,0,.88) 100%);
+  }
+
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+  }
+
+  /* ---------- 吸顶导航 + 当前位置高亮 ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in {
+    max-width: 1080px; margin: 0 auto; padding: 0 32px;
+    display: flex; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-in::-webkit-scrollbar { display: none; }
+  .nav a {
+    flex: 0 0 auto;
+    padding: 13px 11px 12px;
+    font-size: 13.5px; color: var(--mute);
+    border-bottom: 2px solid transparent;
+    transition: color .28s var(--ease), border-color .28s var(--ease);
+  }
+  .nav a:hover { color: var(--body); }
+  .nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+  /* 主题切换：贴到导航右端 */
+  .theme-btn {
+    flex: 0 0 auto; margin-left: auto; align-self: center;
+    width: 32px; height: 32px; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; color: var(--mute);
+    background: transparent; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 50%;
+    transition: color .3s var(--ease), border-color .3s var(--ease),
+                background .3s var(--ease), transform .3s var(--ease);
+  }
+  .theme-btn:hover {
+    color: var(--hover-ink); border-color: var(--line-hi);
+    background: var(--hover-bg); transform: translateY(-1px);
+  }
+  .theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* 阅读进度条 */
+  .prog {
+    position: fixed; top: 0; left: 0; z-index: 6;
+    height: 2px; width: 0;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(138,180,248,.6);
+  }
+  /* ---------- 链接：下划线由左向右展开 ---------- */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+  }
+  a.u::after {
+    content: "";
+    position: absolute; left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .34s var(--ease);
+  }
+  a.u:hover::after { transform: scaleX(1); }
+
+  /* ---------- 顶部个人信息 ---------- */
+  /* 左文右像：姓名信息靠左，头像靠右 */
+  .side {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding-bottom: 38px;
+    margin-bottom: 44px;
+    border-bottom: 1px solid var(--line);
+  }
+  .side .id { flex: 1 1 auto; min-width: 0; }
+  .avatar-swap {
+    position: relative;
+    flex: 0 0 188px;
+    width: 188px; height: 236px;
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    cursor: pointer;
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease),
+                border-color .5s var(--ease);
+  }
+  .avatar-swap:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--line-hi);
+    box-shadow: var(--shadow-lg), 0 0 0 6px var(--glow);
+  }
+  .avatar-swap img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .45s var(--ease);
+  }
+  .avatar-swap .avatar-alt { opacity: 0; }
+  .avatar-swap:hover .avatar-main { opacity: 0; }
+  .avatar-swap:hover .avatar-alt  { opacity: 1; }
+  @media (hover: none) {
+    .avatar-swap .avatar-alt { display: none; }
+  }
+  .side h1 {
+    font-size: 38px; font-weight: 600; color: var(--ink);
+    margin: 0 0 8px; letter-spacing: .04em;
+  }
+  .side .en { font-size: 16px; color: var(--body); margin: 0 0 14px; }
+  .side .meta { margin: 0 0 4px; font-size: 15px; color: var(--mute); }
+  /* 邮箱一行：图标 + 等宽地址，和参考页一致 */
+  .side .mail {
+    display: flex; align-items: center; gap: 10px;
+    margin: 14px 0 0; font-size: 14.5px;
+  }
+  .side .mail i { color: var(--mute); font-size: 15px; }
+  .side .mail a {
+    color: var(--body);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    position: relative;
+  }
+  .side .mail a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s var(--ease);
+  }
+  .side .mail a:hover { color: var(--ink); }
+  .side .mail a:hover::after { transform: scaleX(1); }
+  .side .mail .sep { color: var(--mute); margin: 0 -4px 0 -6px; }
+
+  /* 微信没有可跳转链接，悬停显示微信号 */
+  .wechat {
+    position: relative; cursor: default;
+    color: var(--body);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; margin: 0 6px 0 0;
+    border: 1px solid var(--line); border-radius: 50%;
+    transition: color .3s var(--ease), border-color .3s var(--ease),
+                transform .3s var(--ease), background .3s var(--ease);
+  }
+  .wechat:hover {
+    color: var(--hover-ink); border-color: var(--line-hi);
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+  }
+  .wechat::after {
+    content: attr(data-id);
+    position: absolute; left: 50%; bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(4px);
+    white-space: nowrap;
+    font-size: 12.5px; font-family: ui-monospace, Menlo, Consolas, monospace;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--line-hi); border-radius: 6px;
+    padding: 5px 10px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .28s var(--ease), transform .28s var(--ease);
+  }
+  .wechat:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .icons { margin-top: 16px; font-size: 18px; }
+  .icons a {
+    color: var(--body);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; margin: 0 6px 0 0;
+    border: 1px solid var(--line); border-radius: 50%;
+    transition: color .3s var(--ease), border-color .3s var(--ease),
+                transform .3s var(--ease), background .3s var(--ease);
+  }
+  .icons a:hover {
+    color: var(--hover-ink); border-color: var(--line-hi);
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+  }
+  /* CV 按钮：申博页面的主要行动入口，做成实体按钮 */
+  a.cv {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px; padding: 9px 18px;
+    font-size: 14px; color: var(--ink);
+    border: 1px solid var(--line-hi); border-radius: 999px;
+    background: var(--tint-4);
+    transition: background .3s var(--ease), border-color .3s var(--ease),
+                transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  a.cv i { font-size: 13px; color: var(--accent); }
+  a.cv:hover {
+    background: rgba(138,180,248,.12);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- 主内容 ---------- */
+  .main { min-width: 0; }
+  section {
+    margin-bottom: 26px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);   /* 区块之间明确切分 */
+    scroll-margin-top: 62px;                /* 锚点跳转避开吸顶栏 */
+  }
+  section:last-of-type { border-bottom: 0; }
+
+  /* 主要区块：留白更大，标题更亮 */
+  section.major { margin-bottom: 40px; padding-bottom: 46px; }
+  section.major > h2 { color: var(--body); margin-bottom: 24px; }
+
+  /* 次要区块：收紧，标题降一档 */
+  section.minor { margin-bottom: 18px; padding-bottom: 20px; }
+  section.minor > h2 { font-size: 13px; margin-bottom: 14px; opacity: .85; }
+  section.minor > h2::before {
+    width: 4px; height: 4px; flex-basis: 4px;
+    background: var(--mute); box-shadow: none;
+  }
+  section.minor ul { margin: 0; }
+  section.minor li { margin: 3px 0; font-size: 15px; }
+  h2 {
+    font-size: 15px; font-weight: 600; color: var(--mute);
+    margin: 0 0 20px; padding: 0;
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2::before {
+    content: "";
+    width: 5px; height: 5px; flex: 0 0 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(138,180,248,.7);
+  }
+  h3 {
+    font-size: 15px; font-weight: 600; color: var(--ink);
+    margin: 20px 0 6px;
+  }
+  b { color: var(--ink); font-weight: 600; }
+  p { margin: 0 0 12px; }
+
+  /* About 首段作为导语，字号略大 */
+
+  /* 带边框的内容面板（About 用） */
+  .panel {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--tint-1);
+    padding: 22px 26px;
+  }
+  .panel > p:last-child, .panel > ul:last-child { margin-bottom: 0; }
+  .panel ul { margin: 10px 0 0; padding-left: 22px; }
+  .panel li { margin: 7px 0; }
+  /* 年份 + 一句话的分行表（Experience 用） */
+  .rows {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--tint-1);
+    overflow: hidden;
+  }
+  .rows .row {
+    display: flex; align-items: baseline; gap: 20px;
+    padding: 14px 24px;
+    border-top: 1px solid var(--line);
+    transition: background .32s var(--ease);
+  }
+  .rows .row:first-child { border-top: 0; }
+  .rows .row:hover { background: var(--tint-2); }
+  .rows .yr {
+    flex: 0 0 52px;
+    font-size: 13.5px; font-weight: 600; color: var(--mute);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    border-right: 1px solid var(--line);
+    padding-right: 20px;
+  }
+  /* News 用「年.月」，比纯年份宽 */
+  .rows.ym .yr { flex: 0 0 62px; }
+  .rows .txt { flex: 1 1 auto; min-width: 0; font-size: 15px; }
+  @media (max-width: 560px) {
+    .rows .row { flex-direction: column; gap: 4px; padding: 12px 16px; }
+    .rows .yr, .rows.ym .yr { border-right: 0; padding-right: 0; flex: none; }
+  }
+
+  /* 研究关键词高亮块 */
+  .hl {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    background: var(--hl-bg);
+    color: var(--hl-ink);
+    font-size: .95em;
+  }
+  /* Awards 双列，短条目不必各占一行 */
+  /* 奖项竖排单列 */
+  #awards li { break-inside: avoid; }
+  ul { margin: 6px 0 12px; padding-left: 20px; }
+  li { margin: 5px 0; }
+  li::marker { color: var(--mute); }
+
+  /* ---------- 卡片：上浮 + 边框提亮 + 光晕跟随鼠标 ---------- */
+  .card {
+    position: relative;
+    isolation: isolate;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    padding: 14px 16px;
+    margin-left: -16px;      /* 让文字左缘与标题对齐 */
+    margin-right: -16px;
+    transition: transform .42s var(--ease), border-color .42s var(--ease),
+                box-shadow .42s var(--ease), background .42s var(--ease);
+  }
+  /* 光晕层：圆心由 JS 写入 --mx / --my */
+  .card::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity .42s var(--ease);
+    background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+                                var(--glow), transparent 62%);
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line);
+    background: var(--tint-3);
+    box-shadow: var(--shadow-md);
+  }
+  .card:hover::before { opacity: 1; }
+
+  /* 论文条目 */
+  .pub { display: flex; gap: 16px; margin-bottom: 16px; }
+  .pub .body { flex: 1 1 auto; min-width: 0; }
+  .pub .t { font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px; }
+
+  /* 论文总览图缩略图，点击看大图 */
+  .thumb {
+    flex: 0 0 248px;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    line-height: 0;
+  }
+  .thumb img {
+    width: 100%; height: 142px; display: block;
+    object-fit: contain;
+    filter: var(--img-filter);
+    transition: filter .42s var(--ease);
+  }
+  .pub:hover .thumb img { filter: none; }
+
+  /* 作者行 */
+  .note { font-size: 13px; color: var(--mute); margin: 12px 0 0; }
+
+  /* 论文链接：[PDF] [Code] 这类小链接 */
+
+  /* 完整清单：紧凑条目，左栏统一 150px（会议块或缩略图） */
+  /* 论文框：白底黑字，整框可点开 PDF */
+  #pubs .pub.card {
+    padding: 20px 22px; margin-bottom: 10px;
+    background: var(--pub-bg); border-color: var(--pub-border);
+    display: flex; gap: 22px; align-items: flex-start;
+  }
+  #pubs .pub.card::before { display: none; }
+  #pubs a.pub.card { text-decoration: none; }
+  #pubs a.pub.card:hover {
+    transform: translateY(-3px);
+    background: var(--pub-bg); border-color: var(--pub-border-hi);
+    box-shadow: var(--shadow-card);
+  }
+  #pubs .pub.card .t { color: var(--pub-ink); font-size: 15px; line-height: 1.55; margin-bottom: 6px; }
+  #pubs .pub.card .a { color: var(--pub-body); }
+  #pubs .pub.card .a .me { color: var(--pub-ink); text-decoration-color: var(--pub-uline); }
+  #pubs .pub.card .v { color: var(--pub-mute); }
+  #pubs .pub.card .v .abbr { color: var(--pub-body); }
+  #pubs .pub.card .v .st { color: #2f5aa8; background: rgba(47,90,168,.1); }
+  #pubs .thumb { flex-basis: 228px; border-color: var(--pub-border); }
+  #pubs .thumb img { height: 148px; filter: none; }
+  /* 日期行 */
+  #pubs .pub .dt {
+    display: block; margin-bottom: 5px;
+    font-size: 12.5px; font-weight: 600; color: #8a8a96;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums; letter-spacing: .04em;
+  }
+  /* span 版缩略图/正文需要显式块级 */
+  #pubs .pub .thumb { display: block; }
+  #pubs .pub .body { display: block; flex: 1 1 auto; min-width: 0; }
+  /* ---------- 生活照网格 ---------- */
+  .gal {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .shot { margin: 0; }
+  .shot img {
+    display: block; width: 100%; height: 210px;
+    object-fit: cover; cursor: zoom-in;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+    filter: var(--shot-filter);
+    transition: transform .45s var(--ease), filter .45s var(--ease),
+                border-color .45s var(--ease), box-shadow .45s var(--ease);
+  }
+  .shot img:hover {
+    transform: translateY(-4px);
+    filter: none; border-color: var(--line-hi);
+    box-shadow: var(--shadow-card);
+  }
+  .shot figcaption { margin-top: 9px; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .shot figcaption b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 720px) { .gal { grid-template-columns: 1fr; } .shot img { height: 220px; } }
+
+  /* 灯箱 */
+  .lb {
+    position: fixed; inset: 0; z-index: 50;
+    display: none; align-items: center; justify-content: center;
+    padding: 36px;
+    background: rgba(4,4,6,.9);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    cursor: zoom-out; opacity: 0; transition: opacity .28s var(--ease);
+  }
+  .lb.on { display: flex; opacity: 1; }
+  .lb img {
+    max-width: 100%; max-height: 100%;
+    border-radius: 10px; border: 1px solid var(--line-hi);
+    box-shadow: 0 30px 80px rgba(0,0,0,.7);
+  }
+  .lb .cap {
+    position: absolute; left: 0; right: 0; bottom: 18px;
+    text-align: center; font-size: 13.5px; color: var(--body);
+  }
+
+  #pubs h3 {
+    font-size: 13px; color: var(--mute); font-weight: 600;
+    letter-spacing: .06em; margin: 22px 0 10px;
+  }
+  #pubs h3:first-of-type { margin-top: 0; }
+  .pub .a { font-size: 14.5px; color: var(--body); display: block; margin-bottom: 3px; }
+  /* 会议行：全称 + 缩写，单独一行放在作者下面 */
+  .pub .v { font-size: 13.5px; color: var(--mute); display: block; }
+  .pub .v .abbr { color: var(--body); font-weight: 600; }
+  .pub .v .st {
+    display: inline-block; margin-left: 8px; padding: 1px 7px;
+    font-size: 12px; color: #cfe0fd; background: rgba(138,180,248,.14);
+    border-radius: 4px;
+  }
+  .me { font-weight: 600; color: var(--ink); text-decoration: underline;
+        text-decoration-color: var(--line-hi); text-underline-offset: 3px; }
+  /* 在投 / 在审：普通陈列，不用白底卡片，只靠左侧细线分隔 */
+  .subs { padding-left: 2px; }
+  .sub {
+    position: relative;
+    padding: 2px 0 2px 16px;
+    margin-bottom: 16px;
+    border-left: 2px solid var(--line);
+    transition: border-color .32s var(--ease);
+  }
+  .sub:last-child { margin-bottom: 0; }
+  .sub:hover { border-left-color: var(--accent); }
+  .sub .tag {
+    display: inline-block; margin-bottom: 4px;
+    font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+    color: var(--mute);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+  .sub .t {
+    display: block; font-weight: 600; color: var(--ink);
+    font-size: 15px; line-height: 1.55; margin-bottom: 3px;
+  }
+  .sub .a { display: block; font-size: 14.5px; color: var(--body); margin-bottom: 3px; }
+  .sub .v { display: block; font-size: 13.5px; color: var(--mute); }
+  .sub .v .abbr { color: var(--body); font-weight: 600; }
+  .sub .v .st {
+    display: inline-block; margin-left: 8px; padding: 1px 7px;
+    font-size: 12px; color: var(--hl-ink); background: var(--hl-bg);
+    border-radius: 4px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 14px; font-size: 12.5px; color: var(--mute);
+  }
+
+  /* ---------- 滚到底「end」的跑道 ----------
+     星场画布是 z-index 0、正文 .wrap 是 z-index 1，星点画在内容下面。
+     所以汇聚出来的字必须落在没有内容遮挡的地方，否则只能从卡片和
+     图片的缝隙里露出零碎笔画。这段空白就是留给它的。
+     元素由星场脚本注入 —— 禁用 JS / reduced-motion 时根本不存在，
+     不会白白多出半屏空白。浅色模式星场是 display:none，用 CSS
+     把高度收掉（主题可以来回切，所以不能靠「不注入」解决）。 */
+  .endpad { height: 44vh; min-height: 230px; pointer-events: none; }
+  :root[data-theme="light"] .endpad { height: 0; min-height: 0; }
+
+  /* ---------- 滚动入场：子项依次淡入上移 ----------
+     隐藏态一律挂在 .js-rv 下。这个类由 head 里的内联脚本加，
+     所以禁用 JS 时整页内容照常可见 —— 之前隐藏态写在 CSS 里，
+     JS 一挂整页就是空白。
+     section 自己不再做动画，只当触发器；位移交给子项，
+     这样长 section 才有层次：标题先到，条目再一条条跟上。 */
+  .js-rv .rv-i {
+    opacity: 0;
+    transform: translateY(16px);
+    /* 延迟由 JS 写进 --d，按子项顺序递增 */
+    transition: opacity .62s var(--ease) var(--d, 0s),
+                transform .62s var(--ease) var(--d, 0s);
+  }
+  .js-rv .reveal.in .rv-i { opacity: 1; transform: none; }
+  /* 进场完成后 JS 会摘掉 rv-i，把 transform 还给 .card 的 hover */
+
+  /* 尊重系统的"减少动态效果"设置 */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js-rv .rv-i { opacity: 1; transform: none; transition: none; }
+    .card, .card::before, .avatar-swap, .avatar-swap img,
+    .icons a, a.u::after { transition: none; }
+    .card:hover, .avatar-swap:hover, .icons a:hover { transform: none; }
+  }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 36px 20px 60px; }
+    .nav-in { padding: 0 20px; }
+    .nav a { padding: 12px 9px 11px; font-size: 13px; }
+    /* 窄屏回到上下排：头像在前，居中 */
+    .side { flex-direction: column-reverse; gap: 22px; text-align: center; }
+    .side h1 { font-size: 27px; }
+    .side .mail { justify-content: center; }
+    .side .icons { text-align: center; }
+    .side .icons a { margin: 0 3px; }
+    .avatar-swap { flex: none; width: 152px; height: 190px; }
+    .panel { padding: 18px 18px; }
+    .pub { flex-direction: column; gap: 12px; }
+    .thumb { flex: none; width: 100%; }
+    .thumb img { height: 150px; }
+    #pubs .pub.card { padding: 16px 16px; }
+    #pubs .thumb { flex: none; width: 100%; }
+    #pubs .thumb img { height: 168px; }
+  }
+</style>
+<script>
+  /* 在首次绘制前定主题，否则深色用户会先闪一下浅色。
+     优先级：手动选过的 > 系统偏好 > 深色 */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    /* 入场动画的隐藏态挂在 .js-rv 下，这里加类。
+       放在首绘前，否则内容会先显示一下再被藏起来闪一帧；
+       放在 JS 里而不是 CSS 里，是为了禁用 JS 时整页仍然可读。 */
+    document.documentElement.className += ' js-rv';
+  })();
+</script>
+</head>
+<body>
+<canvas id="dots" aria-hidden="true"></canvas>
+
+<!-- 生活照灯箱 -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="照片查看">
+  <img id="lb-img" src="" alt="">
+  <p class="cap" id="lb-cap"></p>
+</div>
+<div class="prog" id="prog"></div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#about">About</a>
+    <a href="#work">Experience</a>
+    <a href="#news">News</a>
+    <a href="#pubs">Publications</a>
+    <a href="#awards">Awards</a>
+    <a href="#life">Life</a>
+    <button id="theme-btn" class="theme-btn" type="button"
+            aria-label="切换浅色/深色模式" title="切换浅色/深色模式">
+      <i class="fas fa-moon" aria-hidden="true"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ==================== 顶部个人信息 ==================== -->
+  <header class="side">
+    <div class="id">
+      <h1>张帅帅</h1>
+      <p class="en">Shuaishuai Zhang</p>
+      <p class="meta">预计 2027 年获北京工商大学工学硕士学位</p>
+
+      <p class="mail">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:2431062108@st.btbu.edu.cn">2431062108@st.btbu.edu.cn</a><span class="sep">,</span>
+        <a href="mailto:15315414526@163.com">15315414526@163.com</a>
+      </p>
+
+      <div class="icons">
+        <a href="https://github.com/010Bill" title="GitHub"><i class="fab fa-github"></i></a>
+        <!-- 微信号在 data-id 里，悬停显示。改成你的微信号即可 -->
+        <span class="wechat" data-id="Cavin1269" title="微信"><i class="fab fa-weixin"></i></span>
+        <!-- 填入你的 Instagram 用户名 -->
+        <a href="https://instagram.com/你的用户名" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <!-- 建好 Google Scholar 后填入 user 参数并取消注释：
+        <a href="https://scholar.google.com/citations?user=你的ID" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        -->
+      </div>
+      <!-- 把 cv.pdf 放到仓库根目录后取消注释 -->
+      <!-- <a class="cv" href="cv.pdf" target="_blank" rel="noopener">
+        <i class="fas fa-file-alt"></i> Curriculum Vitae
+      </a> -->
+    </div>
+
+    <div class="avatar-swap" title="张帅帅">
+      <img class="avatar-main" src="avatar.jpg" alt="张帅帅">
+      <img class="avatar-alt" src="avatar-formal.jpg" alt="张帅帅（证件照）">
+    </div>
+  </header>
+
+  <!-- ==================== 主内容 ==================== -->
+  <main class="main">
+
+    <section id="about" class="reveal major">
+      <h2>About Me</h2>
+      <div class="panel">
+        <p>我预计于 2027 年在<b>北京工商大学</b>计算机技术专业获得工学硕士学位，师从<b>李静远</b>教授。2024 年获<b>齐鲁工业大学（山东省科学院）</b>计算机科学与技术学士学位。我的研究兴趣包括：</p>
+        <ul>
+          <li><span class="hl">强化学习</span>在可验证奖励训练中的奖励作弊诊断与修正</li>
+          <li>面向<span class="hl">教育场景</span>的训练效率优化与知识点感知采样</li>
+          <li><span class="hl">LLM-as-judge</span> 的可信度校准与模型评测体系</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="work" class="reveal">
+      <h2>Work Experience</h2>
+      <div class="rows">
+        <div class="row">
+          <span class="yr">2026</span>
+          <span class="txt">在<b>猿辅导 AI Lab</b> 实习，参与了自研大模型 kanyun 的开发与优化。</span>
+        </div>
+        <div class="row">
+          <span class="yr">2025</span>
+          <span class="txt">参与<b>河南省重点研发专项</b>（No.241111211900）项目。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="reveal">
+      <h2>Latest News</h2>
+      <div class="rows ym">
+        <div class="row">
+          <span class="yr">2026.09</span>
+          <span class="txt">我们的论文 <b>RESOLVE</b> 被 <b>ICANN 2026</b> 接收，并赴意大利进行论文展示。</span>
+        </div>
+        <div class="row">
+          <span class="yr">2026.08</span>
+          <span class="txt">我们的论文 <b>EduSRO</b> 被 <b>CCF Big Data 2026</b> 接收，并赴哈尔滨进行论文展示。</span>
+        </div>
+        <div class="row">
+          <span class="yr">2026.05</span>
+          <span class="txt">担任 <b>ICANN 2026</b> 论文评审（sub-reviewer）。</span>
+        </div>
+        <div class="row">
+          <span class="yr">2026.03</span>
+          <span class="txt">我们的论文 <b>D³</b> 被 <b>KSEM 2026</b> 接收。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="pubs" class="reveal major">
+      <h2>Publications</h2>
+
+      <h3>已发表 / 已录用</h3>
+      <a class="pub card" href="resolve.pdf" target="_blank" rel="noopener">
+        <span class="thumb">
+          <img src="fig-resolve.jpg" alt="RESOLVE 框架总览图" loading="lazy">
+        </span>
+        <span class="body">
+          <span class="dt">2026.05</span>
+          <span class="t">RESOLVE: Reward Scaling via Online Logic Variation Environments for Mitigating Reward Hacking in LLMs</span>
+          <span class="a"><span class="me">Shuaishuai Zhang</span>, Yu Wang, Jingyuan Li*, Yifan Liu</span>
+          <span class="v">International Conference on Artificial Neural Networks <span class="abbr">(ICANN)</span> 2026</span>
+        </span>
+      </a>
+      <a class="pub card" href="edusro.pdf" target="_blank" rel="noopener">
+        <span class="thumb">
+          <img src="fig-edusro.jpg" alt="EduSRO 动机图：零方差样本比例随知识点和训练进程的变化" loading="lazy">
+        </span>
+        <span class="body">
+          <span class="dt">2026.06</span>
+          <span class="t">EduSRO: Efficient Reinforcement Learning for K-12 Science Education via Knowledge-Component-Aware Selective Rollout Optimization</span>
+          <span class="a"><span class="me">Shuaishuai Zhang</span>, Jingyuan Li*, Yuanzhuo Wang</span>
+          <span class="v">CCF Conference on Big Data <span class="abbr">(CCF Big Data)</span> 2026</span>
+        </span>
+      </a>
+      <a class="pub card" href="d3.pdf" target="_blank" rel="noopener">
+        <span class="thumb">
+          <img src="fig-d3.jpg" alt="D³ 框架总览图" loading="lazy">
+        </span>
+        <span class="body">
+          <span class="dt">2026.03</span>
+          <span class="t">D³: Dispute-Driven Debate for Stabilizing Multi-Agent Reasoning in Large Language Models</span>
+          <span class="a">Yifan Liu, Yu Wang, Shiqi Sun, <span class="me">Shuaishuai Zhang</span></span>
+          <span class="v">International Conference on Knowledge Science, Engineering and Management <span class="abbr">(KSEM)</span> 2026</span>
+        </span>
+      </a>
+      <a class="pub card" href="caser.pdf" target="_blank" rel="noopener">
+        <span class="thumb">
+          <img src="fig-caser.jpg" alt="CASER 框架总览图：检索前改写选择与检索后重排选择" loading="lazy">
+        </span>
+        <span class="body">
+          <span class="dt">2026.09</span>
+          <span class="t">CASER: Cost-Aware Selective Enhancement for Conversational Retrieval</span>
+          <span class="a">Liang Cheng, Hao Wang, Jingyuan Li*, Miao Liu, Yifan Liu, <span class="me">Shuaishuai Zhang</span></span>
+          <span class="v">IEEE/WIC International Conference on Web Intelligence and Intelligent Agent Technology <span class="abbr">(WI-IAT)</span> 2026</span>
+        </span>
+      </a>
+
+      <h3>在投 / 在审</h3>
+      <div class="subs">
+        <div class="sub">
+          <span class="tag">ASOC · Q1</span>
+          <span class="t">Robust Verifiable Reasoning: A Consistency Guided Reinforcement Learning Framework for Large Language Models</span>
+          <span class="a"><span class="me">Zhang S</span>, Li J*, et al.</span>
+          <span class="v">Applied Soft Computing <span class="abbr">(ASOC)</span><span class="st">审稿中</span></span>
+        </div>
+        <div class="sub">
+          <span class="tag">COLING 2027</span>
+          <span class="t">EIG-Mem: Uncertainty-Aware Memory Value Estimation for Long-Term Memory Retrieval</span>
+          <!-- 一作姓氏缩写填到 me 前面，例：Liu Y, Zhang S, et al. -->
+          <span class="a">, <span class="me">Zhang S</span>, et al.</span>
+          <span class="v">International Conference on Computational Linguistics <span class="abbr">(COLING)</span> 2027<span class="st">审稿中</span></span>
+        </div>
+      </div>
+
+      <p class="note">* 通讯作者</p>
+    </section>
+
+    <section id="awards" class="reveal minor">
+      <h2>Awards &amp; Honors</h2>
+      <ul>
+        <li>CET-6 563 分</li>
+        <li>优秀毕业生 · 2024</li>
+        <li>三好学生 · 2024</li>
+        <li>教师资格证（数学）</li>
+        <li>“院际杯”篮球冠军 2025</li>
+        <li>“院际杯”足球冠军 2026，亚军 2025</li>
+        <li>校运会跳高银牌 2025</li>
+      </ul>
+    </section>
+
+    <section id="life" class="reveal">
+      <h2>Life</h2>
+      <div class="gal">
+        <figure class="shot">
+          <img src="life-1.jpg" alt="院足球队赛前在场边集合，队员身着白色队服" loading="lazy">
+          <figcaption><b>足球</b> — 院足球队队长，司职左边锋，带队获院际杯冠军、亚军各一次。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="life-2.jpg" alt="学生在书桌前做数学题的插画" loading="lazy">
+          <figcaption><b>教学</b> — 连续两年辅导北京市海淀区学生数学、英语、物理、化学等科目，并最终升入理想院校。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="life-3.jpg" alt="在「下一站北工商」宣讲活动上发言" loading="lazy">
+          <figcaption><b>宣讲</b> — 优秀学子回访母校活动（500+ 高考生）、山东地区研招会（200+ 本科生）。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      <p style="margin:0">最后更新：2026 年 9 月</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 光晕跟随鼠标：把指针位置写进 CSS 变量 ---- */
+  if (!reduced && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(function (el) {
+      var raf = null, x = 0, y = 0;
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        x = e.clientX - r.left;
+        y = e.clientY - r.top;
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
+          el.style.setProperty('--mx', x + 'px');
+          el.style.setProperty('--my', y + 'px');
+        });
+      });
+    });
+  }
+
+  /* ---- 滚动入场：子项依次淡入上移，只触发一次 ---- */
+  var items = document.querySelectorAll('.reveal');
+
+  var STEP = 65;        // 相邻子项的延迟间隔(ms)
+  var STEP_MAX = 9;     // 延迟封顶的序号，再多也不继续累加
+
+  /* 把一个 section 拆成「依次进场」的子项。
+     各 section 结构不一样（panel / rows / 卡片 / 图集 / 列表），
+     所以这里按容器类型下钻一层，拿到真正的条目，
+     而不是把 .rows 整块当一项 —— 不然 news 的四条还是一起动。 */
+  function pieces(sec) {
+    var out = [], kids = sec.children;
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      var inner = k.classList.contains('rows') ? k.children
+                : k.classList.contains('gal')  ? k.children
+                : k.tagName === 'UL'           ? k.children
+                : null;
+      if (inner && inner.length) {
+        for (var j = 0; j < inner.length; j++) out.push(inner[j]);
+      } else {
+        out.push(k);
+      }
+    }
+    return out;
+  }
+
+  /* 进场结束后摘掉 rv-i 和 --d。
+     .card 的 hover 有自己的 transform 过渡，留着 rv-i 会和它打架
+     （.js-rv .rv-i 的权重更高，hover 位移会走进场的时长和延迟）。 */
+  function cleanup(list, total) {
+    setTimeout(function () {
+      list.forEach(function (el) {
+        el.classList.remove('rv-i');
+        el.style.removeProperty('--d');
+      });
+    }, total + 700);
+  }
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+
+  /* 隐藏态和延迟都在脚本一开始就写好。
+     不能等相交时才加 rv-i —— 那之前子项是可见的，加类那一瞬间
+     会先闪现再隐去。本脚本在 body 末尾同步执行，赶在首绘之前。 */
+  var marked = [];
+  items.forEach(function (sec) {
+    var list = pieces(sec);
+    list.forEach(function (el, i) {
+      el.classList.add('rv-i');
+      el.style.setProperty('--d', (Math.min(i, STEP_MAX) * STEP) + 'ms');
+    });
+    marked.push({ sec: sec, list: list });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var sec = en.target;
+      io.unobserve(sec);
+      sec.classList.add('in');
+      for (var i = 0; i < marked.length; i++) {
+        if (marked[i].sec === sec) {
+          var L = marked[i].list;
+          cleanup(L, Math.min(L.length, STEP_MAX + 1) * STEP);
+          break;
+        }
+      }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+<script>
+/* ================= 浅色 / 深色切换 ================= */
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-btn');
+  if (!btn) return;
+  var icon = btn.querySelector('i');
+  var manual = false;
+  try { var v = localStorage.getItem('theme'); manual = (v === 'light' || v === 'dark'); } catch (e) {}
+
+  function paint() {
+    var light = root.getAttribute('data-theme') === 'light';
+    if (icon) icon.className = light ? 'fas fa-sun' : 'fas fa-moon';
+    btn.setAttribute('aria-label', light ? '切换到深色模式' : '切换到浅色模式');
+    btn.setAttribute('title', light ? '切换到深色模式' : '切换到浅色模式');
+  }
+  paint();
+
+  var timer = null;
+  function apply(next) {
+    root.classList.add('theming');
+    root.setAttribute('data-theme', next);
+    paint();
+    clearTimeout(timer);
+    timer = setTimeout(function () { root.classList.remove('theming'); }, 380);
+  }
+
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    manual = true;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    apply(next);
+  });
+
+  /* 没手动选过的话，跟随系统切换 */
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  var onSys = function (e) { if (!manual) apply(e.matches ? 'light' : 'dark'); };
+  if (mq.addEventListener) mq.addEventListener('change', onSys);
+  else if (mq.addListener) mq.addListener(onSys);
+})();
+</script>
+
+<script>
+/* ================= 滚动位置指示：导航高亮 + 进度条 ================= */
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var prog  = document.getElementById('prog');
+  if (!links.length) return;
+
+  var secs = links.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  });
+
+  var raf = null;
+  function update() {
+    raf = null;
+
+    /* 进度条 */
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    if (prog) prog.style.width = (pct * 100) + '%';
+
+    /* 找到最后一个顶边已越过吸顶栏的区块 */
+    var line = 96, cur = 0;
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i] && secs[i].getBoundingClientRect().top <= line) cur = i;
+    }
+    /* 滚到底时锁定最后一项 */
+    if (pct > 0.995) cur = secs.length - 1;
+
+    for (var j = 0; j < links.length; j++) {
+      links[j].classList.toggle('active', j === cur);
+    }
+
+    /* 导航横向滚动时把当前项带进视野 */
+    var act = links[cur];
+    if (act && act.parentNode.scrollWidth > act.parentNode.clientWidth) {
+      var p = act.parentNode, l = act.offsetLeft, w = act.offsetWidth;
+      if (l < p.scrollLeft || l + w > p.scrollLeft + p.clientWidth) {
+        p.scrollTo({ left: l - p.clientWidth / 2 + w / 2, behavior: 'smooth' });
+      }
+    }
+  }
+
+  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+
+<script>
+/* ================= 光点随鼠标吸引 ================= */
+(function () {
+  /* ---------- 生活照灯箱 ---------- */
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  if (lb && lbImg) {
+    Array.prototype.forEach.call(document.querySelectorAll('.shot img'), function (im) {
+      im.addEventListener('click', function () {
+        lbImg.src = im.currentSrc || im.src;
+        lbImg.alt = im.alt || '';
+        var fc = im.parentNode.querySelector('figcaption');
+        lbCap.textContent = fc ? fc.textContent.trim() : '';
+        lb.classList.add('on');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeLb() {
+      lb.classList.remove('on');
+      document.body.style.overflow = '';
+    }
+    lb.addEventListener('click', closeLb);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('on')) closeLb();
+    });
+  }
+
+  var cv = document.getElementById('dots');
+  if (!cv) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ctx = cv.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 2, 2);
+  var W = 0, H = 0, raf = null;
+
+  /* 星色：取自 OpenAI 站点的蓝/紫色阶，外加冷白与一点暖调 */
+  var PAL = [
+    [246, 250, 254],   // 近白
+    [232, 243, 254],   // 冷白偏蓝
+    [164, 205, 251],   // 淡蓝
+    [ 83, 154, 248],   // 蓝
+    [166, 125, 242],   // 紫
+    [120, 73, 209],    // 深紫
+    [124, 220, 216],   // 青
+    [250, 216, 168]    // 暖黄
+  ];
+  /* 各层的取色权重：越远越冷越白，越近颜色越杂 */
+  var W_FAR  = [26, 30, 22, 10, 6, 2, 3, 1];
+  var W_MID  = [14, 22, 24, 16, 10, 4, 7, 3];
+  var W_NEAR = [10, 16, 20, 18, 14, 6, 10, 6];
+
+  function pick(w) {
+    var t = 0, i;
+    for (i = 0; i < w.length; i++) t += w[i];
+    t *= Math.random();
+    for (i = 0; i < w.length; i++) { t -= w[i]; if (t <= 0) return i; }
+    return 0;
+  }
+  function rgba(i, a) {
+    var c = PAL[i];
+    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+  }
+
+  /* ---- 远景层：一次性烘焙到离屏画布，每帧只做两次 drawImage ---- */
+  var far = document.createElement('canvas');
+  var farOff = 0;               // 纵向缓慢滚动的偏移
+  var FAR_SPEED = 0.0055;       // px/ms，非常慢
+
+  function bakeFar() {
+    far.width  = Math.round(W * dpr);
+    far.height = Math.round(H * dpr);
+    var g = far.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, W, H);
+
+    /* 烘焙层只保留「最暗那一档」当底噪纹理。
+       原来把最亮的星也烘进来，导致 77% 的星点（含最显眼的那几百颗）
+       对光标完全无响应 —— 这就是「有的能动有的不动」的根因。
+       现在亮星全部移到 mid / near 活动层。 */
+    var n = Math.round(W * H / DEN_FAR);          // 1920×1080 约 2730 颗
+    for (var i = 0; i < n; i++) {
+      var r = 0.45 + Math.random() * 0.25;
+      var a = 0.15 + Math.random() * 0.15;
+      g.fillStyle = rgba(pick(W_FAR), a);
+      // 小点用 fillRect，比 arc 便宜且亚像素下视觉等价
+      var d2 = r * 2;
+      g.fillRect(Math.random() * W, Math.random() * H, d2, d2);
+    }
+    // 几片很淡的星云，给画面留出疏密对比
+    for (var k = 0; k < 5; k++) {
+      var cx = Math.random() * W, cy = Math.random() * H;
+      var rad = 160 + Math.random() * 300;
+      var ci = 2 + Math.floor(Math.random() * 4);
+      var rg = g.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      rg.addColorStop(0, rgba(ci, 0.05));
+      rg.addColorStop(1, rgba(ci, 0));
+      g.fillStyle = rg;
+      g.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+    }
+    return n;
+  }
+
+  /* ---- 中景 / 近景：逐帧绘制，带呼吸与光标交互 ---- */
+  var mid = [], near = [];
+  var RADIUS = 265, PUSH = 0.62, DAMP = 0.93, VMAX = 1.5;
+  var SPRING = 0.012;         // 偏移回弹刚度，约 1 秒滑回原位
+  var OMAX = 120;             // 单颗星的最大偏移
+  var LIFT = 0.55;            // 光标附近提亮幅度
+  var RELIEF = 0.85;          // 光标附近「免除」正文列抽稀的比例
+  var FADE = 0.06;            // 抽稀阈值边缘的渐隐带宽
+  /* 三层的「每多少像素一颗」。数字越大越稀。
+     烘焙层是底噪纹理、数量最多，所以它对「糊成一片」的观感贡献最大，
+     稀释幅度给得比另两层大一点。 */
+  var DEN_FAR = 760, DEN_MID = 340, DEN_NEAR = 3100;
+  var BWBIAS = 1.1;           // 抽稀按亮度加权的强度，见 step() 里的 th
+  /* 光标做插值跟随：鼠标快速划过时星点会拖出一道尾迹，
+     而不是瞬移到新位置、只在终点推一下。 */
+  var tmx = -9999, tmy = -9999, hasPt = false;
+  /* 点击涟漪：从点击处扩散一圈，推开途经的星点 */
+  var pulses = [];
+  var PULSE_SPEED = 0.42, PULSE_LIFE = 900, PULSE_BAND = 70, PULSE_FORCE = 1.5;
+  var mx = -9999, my = -9999, active = false;
+
+  /* 星座连线：光标半径内的近景星两两连很淡的线。
+     之前光标只是把星推开，位移在满屏飘动里看不出来；连线一出现
+     就明确「这是我在影响它」，而且线会随光标移动不断重组。
+     只连近景层（数量少），并且只连没被正文列抽掉的星。 */
+  var LINK_DIST = 112, LINK_D2 = LINK_DIST * LINK_DIST;
+  var LINK_MAX = 14;            // 参与连线的星数上限，两两比较是 O(n²)
+  var LINK_A = 0.78;            // 线的整体透明度系数（正文列上另有衰减）
+  var linkBuf = [], linkN = 0;
+  for (var lk = 0; lk < LINK_MAX; lk++) linkBuf.push({ x: 0, y: 0, n: 0 });
+
+  /* 流星：每 9~19 秒划过一道。星场本身是匀速漂移，看久了是静的；
+     偶发事件能让背景「活」起来，又不会一直抢视线。
+     拖尾用一串递减的小方块画，避免每帧新建渐变或做矩阵变换。 */
+  var meteors = [], mtNext = 0;
+  var MT_LIFE = 1150, MT_TRAIL = 8;    // 拖尾分 8 段描线
+  var MT_TDIM = 0.45;                   // 拖尾在正文列的压暗
+  var MT_TNARROW = 0.62;               // 拖尾在正文列的变细，比压暗更划算
+  var MT_GDIM = 0.95;                  // 头部亮斑在正文列的压制（局部均值的大头）
+
+  /* ---- 滚到底：星点汇聚成「end」 ----
+     目标点从离屏画布上栅格化的文字里采样，所以字形跟着字体走，
+     不用手写笔画路径。
+     字落在 .endpad 那段空白跑道的中心，并且跟着滚动走（文档坐标），
+     所以它永远不会压在正文上 —— 这是唯一能让它真的「看得见」的位置，
+     画布在内容下面。 */
+  var EN_TXT = 'end';
+  var EN_H = 0.20;        // 字高占视口高的比例
+  var EN_WMAX = 0.74;     // 字宽上限占视口宽的比例（窄屏时由它定字号）
+  var EN_LS = 0.08;       // 字间距，按字号的比例
+  var EN_MAX = 900;       // 参与组字的星数上限
+  var EN_GAP = 3.5;       // 珠子间距(px)：轮廓总长 / 这个数 = 星数
+  var EN_STAG = 0.34;     // 错峰强度：0=一起到，越大越「一个个落位」
+  var EN_DIM = 0.42;      // 飞行途中（还在正文区上空）的压暗
+  /* 流动速度 px/ms。整条轮廓上所有珠子同速，所以看起来是一条
+     「流」在走，而不是各自乱飘。 */
+  var EN_FLOW = 0.021;
+  var EN_SPDV = 0.12;     // 单颗速度的随机浮动比例，避免整体过于机械
+  var EN_JIT = 0.022;     // 横向抖动幅度，按字号的比例（贴线的那批）
+  var EN_FUZZ = 0.16;     // 有多少比例的暗星散出去当绒毛
+  var EN_FUZZW = 3.4;     // 绒毛的抖动放大倍数
+  var EN_SMOOTH = 3;      // 轮廓平滑的次数（像素楼梯会让法线很脏）
+  var EN_NEARQ = 0.32;    // 从近景层（带光晕）抽多少比例，决定「亮斑」密度
+  var ENc = [];           // 轮廓：{ px, py, nx, ny, n, len }，弧长等距重采样
+  var ENn = 0;            // 实际参与组字的星数
+  var EN_FONT = '700 {S}px ui-sans-serif,system-ui,"Segoe UI",Helvetica,Arial,sans-serif';
+  var enCv = null, enAssigned = false, enSize = 0;
+  var MORPH = 0;          // 0~1，当前汇聚进度（平滑后的）
+  var padEl = null, padTop = 0, padH = 0;
+  // 滚动位置。pageYOffset 在所有目标浏览器都有，documentElement 做兜底
+  function scrollY() {
+    return window.pageYOffset !== undefined
+      ? window.pageYOffset : document.documentElement.scrollTop;
+  }
+
+  /* 近景大星的光晕贴图，按色相各预渲染一张 */
+  var halos = PAL.map(function (c) {
+    var s = 44, o = document.createElement('canvas');
+    o.width = o.height = s;
+    var g = o.getContext('2d');
+    var k = c[0] + ',' + c[1] + ',' + c[2];
+    var rg = g.createRadialGradient(s/2, s/2, 0, s/2, s/2, s/2);
+    rg.addColorStop(0,    'rgba(' + k + ',.42)');
+    rg.addColorStop(0.35, 'rgba(' + k + ',.12)');
+    rg.addColorStop(1,    'rgba(' + k + ',0)');
+    g.fillStyle = rg;
+    g.fillRect(0, 0, s, s);
+    return o;
+  });
+
+  /* 主星的十字芒贴图：两条细长渐变，中间最亮两端透明 */
+  var spikes = PAL.map(function (c) {
+    var s = 48, o = document.createElement('canvas');
+    o.width = o.height = s;
+    var g = o.getContext('2d');
+    var k = c[0] + ',' + c[1] + ',' + c[2];
+    var mid = s / 2, thin = 1.1;
+    [[0, 1], [1, 0]].forEach(function (dir) {
+      var lg = dir[0]
+        ? g.createLinearGradient(0, mid, s, mid)
+        : g.createLinearGradient(mid, 0, mid, s);
+      lg.addColorStop(0,    'rgba(' + k + ',0)');
+      lg.addColorStop(0.5,  'rgba(' + k + ',.5)');
+      lg.addColorStop(1,    'rgba(' + k + ',0)');
+      g.fillStyle = lg;
+      if (dir[0]) g.fillRect(0, mid - thin / 2, s, thin);
+      else        g.fillRect(mid - thin / 2, 0, thin, s);
+    });
+    return o;
+  });
+
+  function makeStar(cfg) {
+    /* 漂移角必须叫 ang。原来这里是 var a = Math.random()*2π，
+       两行之后又被 var a = cfg.a0 + ... （透明度）覆盖，
+       而 dx/dy 是在下面的对象字面量里才求值的 —— 等于说漂移方向
+       取的是透明度（0.42~1.0 rad），整层星都朝右下同向平移，
+       而不是各向随机。 */
+    var ang = Math.random() * Math.PI * 2;
+    var sp = cfg.sp0 + Math.random() * cfg.sp1;
+    var hero = cfg.hero ? Math.random() < cfg.hero : false;
+    var r = (cfg.r0 + Math.random() * cfg.r1) * (hero ? 1.5 : 1);
+    var a = cfg.a0 + Math.random() * cfg.a1;
+    /* 亮度权重 0~1：面积 × 透明度 近似这颗星往屏幕上铺了多少光。
+       hero 星半径 ×1.5，又额外叠了光晕和十字芒，所以再乘一档。
+       归一化用近景 hero 的上限 (2.3*1.5)^2 * 1 * 1.8。
+       正文列靠它优先抽亮星 —— 顶到局部均值 0.3、把正文对比度压到
+       2.x:1 的就是这几颗，而它们恰好是留白区最该留下的，
+       所以按位置分开处理比整体压暗划算。 */
+    var bw = Math.min(1, r * r * a * (hero ? 1.8 : 1) / 21.4);
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      dx: Math.cos(ang) * sp,
+      dy: Math.sin(ang) * sp,
+      vx: 0, vy: 0,
+      // 光标造成的临时偏移，由弹簧拉回 0；基准位置 x/y 不受光标影响
+      ox: 0, oy: 0,
+      r: r,
+      a: a,
+      ci: pick(cfg.w),
+      tw: 0.0006 + Math.random() * 0.0016,
+      ph: Math.random() * Math.PI * 2,
+      par: cfg.par,
+      hero: hero,
+      /* 每颗星一个固定的 0~1 抽签号。正文列不再把所有星一起压暗，
+         而是按这个号「抽掉」一部分星，留下来的保持满亮度 ——
+         少而亮比多而灰明显得多，而且对文字的干扰反而更小。 */
+      key: Math.random(),
+      bw: bw,
+      /* 「end」的流动参数。cp = 轮廓序号，-1 表示这颗星不参与组字。
+         目标点不再是固定坐标，而是「第 cp 条轮廓上、相位 cph 处」——
+         相位随时间推进，所以珠子是沿着笔画走的。
+         cj 是横向抖动（按法线方向偏出去，让线有厚度），
+         cv 是速度微扰，sg 是错峰序号（按 x 排，字从左往右长出来）。 */
+      cp: -1, cph: 0, cj: 0, cv: 1, sg: 0
+    };
+  }
+
+  function build() {
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width  = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    bakeFar();
+
+    /* 中景。密度要按「抽稀前」算 —— 正文列只留 18%，
+       所以基数必须够大，列内才有官网那种密度。 */
+    var nMid = Math.round(W * H / DEN_MID);
+    mid = [];
+    for (var i = 0; i < nMid; i++) {
+      mid.push(makeStar({ r0: 0.8, r1: 0.7, a0: 0.42, a1: 0.33,
+                          sp0: 0.012, sp1: 0.05, w: W_MID, par: 0.72 }));
+    }
+
+    /* 近景。带光晕的星靠 drawImage 合成，是整帧最贵的一笔，
+       所以数量压住、单颗做亮一点。 */
+    // hero: 一成半的近景星放大带十字芒，画面里有几颗「站得住」的主星
+    var nNear = Math.round(W * H / DEN_NEAR);
+    near = [];
+    for (var j = 0; j < nNear; j++) {
+      near.push(makeStar({ r0: 1.25, r1: 1.05, a0: 0.62, a1: 0.38,
+                           sp0: 0.03, sp1: 0.09, w: W_NEAR, par: 1, hero: 0.15 }));
+    }
+
+    buildPunch();
+    ensurePad();
+    measPad();          // 跑道高度是 vh，视口一变就得重量
+    buildEnd();         // 字号跟着视口走，所以目标点也要重建
+    enAssigned = false; // 星都是新的，旧的分配作废
+  }
+
+  /* ---- 「end」目标点：把文字栅格化到离屏画布，再按步长采样 ----
+     手写笔画路径的话字形会很土，而且 e/n/d 的曲线得自己插值；
+     交给字体引擎画、读 alpha 通道取点，字形是真的。 */
+  function buildEnd() {
+    ENc = []; ENn = 0; enSize = 0;
+    if (reduced) return;                 // reduced-motion 不做这段
+    if (!enCv) enCv = document.createElement('canvas');
+    var g = enCv.getContext('2d');
+
+    // 先用 100px 量一次，解出能同时满足字高和字宽上限的字号
+    var probe = 100;
+    g.font = EN_FONT.replace('{S}', probe);
+    var unit = g.measureText(EN_TXT).width / probe;        // 每 1px 字号的宽
+    unit += EN_LS * (EN_TXT.length - 1);                   // 加上字间距
+    var size = Math.min(H * EN_H, (W * EN_WMAX) / unit);
+    if (size < 24) return;                                 // 太小就不做了
+
+    var ls = size * EN_LS;
+    g.font = EN_FONT.replace('{S}', size);
+    var tw = g.measureText(EN_TXT).width + ls * (EN_TXT.length - 1);
+    var pad = Math.ceil(size * 0.4);
+    var cw = Math.ceil(tw) + pad * 2, ch = Math.ceil(size * 1.6) + pad * 2;
+    enCv.width = cw; enCv.height = ch;
+
+    // 改尺寸会重置上下文状态，font 要重新设
+    g = enCv.getContext('2d');
+    g.clearRect(0, 0, cw, ch);
+    g.font = EN_FONT.replace('{S}', size);
+    g.textBaseline = 'middle';
+    g.fillStyle = '#fff';
+    /* 逐字画而不是一次 fillText：letterSpacing 兼容性不好，
+       而字间距对「end」这种三个字母的词观感影响不小。 */
+    var cx = pad;
+    for (var ci = 0; ci < EN_TXT.length; ci++) {
+      g.fillText(EN_TXT[ci], cx, ch / 2);
+      cx += g.measureText(EN_TXT[ci]).width + ls;
+    }
+
+    var im = g.getImageData(0, 0, cw, ch).data;
+    /* 取 alpha 做二值图。只用来找轮廓，不再撒面点。 */
+    var bin = new Uint8Array(cw * ch);
+    for (var bi = 0; bi < cw * ch; bi++) bin[bi] = im[bi * 4 + 3] >= 128 ? 1 : 0;
+    var loops = traceAll(bin, cw, ch);
+    var ox = cw / 2, oy = ch / 2;        // 以画布中心为原点，存相对偏移
+    for (var li = 0; li < loops.length; li++) {
+      var c = resample(smooth(loops[li], EN_SMOOTH), ox, oy);
+      // 太短的环（抗锯齿留下的碎屑）丢掉
+      if (c && c.len > size * 0.5) ENc.push(c);
+    }
+    ENn = 0;
+    for (var ci2 = 0; ci2 < ENc.length; ci2++) {
+      ENc[ci2].want = Math.max(4, Math.round(ENc[ci2].len / EN_GAP));
+      ENn += ENc[ci2].want;
+    }
+    // 超上限就整体等比缩减，各环的占比不变
+    if (ENn > EN_MAX) {
+      var sc = EN_MAX / ENn;
+      ENn = 0;
+      for (var ci3 = 0; ci3 < ENc.length; ci3++) {
+        ENc[ci3].want = Math.max(4, Math.round(ENc[ci3].want * sc));
+        ENn += ENc[ci3].want;
+      }
+    }
+    enSize = size;
+  }
+
+  /* ---- Moore 邻域轮廓跟踪 ----
+     扫到一个「自己是实心、上面一格是空」的像素就起步，沿边界绕一圈回到原点。
+     外轮廓和内孔（e 和 d 的字怀）都会被找到，方向相反 ——
+     所以字怀里的那一串珠子是反向流动的，正好像参考图里交错的几股。 */
+  function traceAll(bin, cw, ch) {
+    var seen = new Uint8Array(cw * ch), out = [];
+    // 8 邻域，顺时针
+    var DX = [1, 1, 0, -1, -1, -1, 0, 1], DY = [0, 1, 1, 1, 0, -1, -1, -1];
+    function at(x, y) {
+      return (x < 0 || y < 0 || x >= cw || y >= ch) ? 0 : bin[y * cw + x];
+    }
+    for (var y = 1; y < ch - 1; y++) {
+      for (var x = 1; x < cw - 1; x++) {
+        if (!at(x, y) || at(x, y - 1) || seen[y * cw + x]) continue;
+        var path = [], px = x, py = y, dir = 0, guard = 0;
+        var maxStep = cw * ch * 4;
+        do {
+          path.push(px, py);
+          seen[py * cw + px] = 1;
+          /* 从「上一步来的方向回头再逆时针退一格」开始找下一个实心邻居。
+             这样轮廓是连续的，不会在细颈处跳到对面去。 */
+          var found = -1;
+          for (var k = 0; k < 8; k++) {
+            var nd = (dir + 6 + k) % 8;
+            if (at(px + DX[nd], py + DY[nd])) { found = nd; break; }
+          }
+          if (found < 0) break;            // 孤立像素
+          dir = found;
+          px += DX[dir]; py += DY[dir];
+        } while ((px !== x || py !== y) && ++guard < maxStep);
+        if (path.length >= 16) out.push(path);
+      }
+    }
+    return out;
+  }
+
+  /* 轮廓平滑：像素级边界是锯齿，直接求法线会很脏，
+     珠子的横向抖动就会一格一格地跳。滑动平均几次就够。 */
+  function smooth(p, times) {
+    var n = p.length / 2, a = p;
+    for (var t = 0; t < times; t++) {
+      var b = new Float64Array(n * 2);
+      for (var i = 0; i < n; i++) {
+        var i0 = (i - 1 + n) % n, i1 = (i + 1) % n;
+        b[i * 2]     = (a[i0 * 2] + a[i * 2] * 2 + a[i1 * 2]) / 4;
+        b[i * 2 + 1] = (a[i0 * 2 + 1] + a[i * 2 + 1] * 2 + a[i1 * 2 + 1]) / 4;
+      }
+      a = b;
+    }
+    return a;
+  }
+
+  /* 按弧长等距重采样成闭合环，并算出每点的法线。
+     等距很重要：珠子的相位是弧长归一化的，不等距会让它在曲率大的地方
+     忽快忽慢，看起来像卡顿。 */
+  function resample(p, ox, oy) {
+    var n = p.length / 2;
+    if (n < 8) return null;
+    // 累积弧长
+    var cum = new Float64Array(n + 1);
+    for (var i = 0; i < n; i++) {
+      var j = (i + 1) % n;
+      cum[i + 1] = cum[i] + Math.hypot(p[j * 2] - p[i * 2], p[j * 2 + 1] - p[i * 2 + 1]);
+    }
+    var len = cum[n];
+    if (!(len > 1)) return null;
+    // 每 ~1.5px 一个采样点，够平滑又不浪费内存
+    var m = Math.max(8, Math.round(len / 1.5));
+    var px = new Float64Array(m), py = new Float64Array(m);
+    var nx = new Float64Array(m), ny = new Float64Array(m);
+    var seg = 0;
+    for (var k = 0; k < m; k++) {
+      var want = len * k / m;
+      while (seg < n && cum[seg + 1] < want) seg++;
+      var s0 = cum[seg], s1 = cum[seg + 1];
+      var f = s1 > s0 ? (want - s0) / (s1 - s0) : 0;
+      var a0 = seg % n, a1 = (seg + 1) % n;
+      px[k] = p[a0 * 2] + (p[a1 * 2] - p[a0 * 2]) * f - ox;
+      py[k] = p[a0 * 2 + 1] + (p[a1 * 2 + 1] - p[a0 * 2 + 1]) * f - oy;
+    }
+    // 法线取中心差分的切线转 90°
+    for (var k2 = 0; k2 < m; k2++) {
+      var b0 = (k2 - 1 + m) % m, b1 = (k2 + 1) % m;
+      var tx = px[b1] - px[b0], ty = py[b1] - py[b0];
+      var tl = Math.hypot(tx, ty) || 1;
+      nx[k2] = -ty / tl; ny[k2] = tx / tl;
+    }
+    return { px: px, py: py, nx: nx, ny: ny, n: m, len: len, want: 0 };
+  }
+
+  /* 跑道中心在视口里的 y。跟着滚动走，所以字始终在那段空白里，
+     不会压到 Life 图集或 footer 上。 */
+  function endY() {
+    return padTop + padH / 2 - scrollY();
+  }
+
+  /* 0~1：跑道滚进来多少。到底时为 1。
+     用跑道自身的位置算，不依赖 scrollHeight，图片加载完导致的
+     文档高度变化不会让它跳。 */
+  function endProg() {
+    if (!padH || reduced) return 0;
+    var sc = scrollY();
+    // 跑道顶边进入视口底部算 0，跑道完全露出算 1
+    var p = (sc + H - padTop) / padH;
+    return p < 0 ? 0 : (p > 1 ? 1 : p);
+  }
+
+  /* 把星分配到各条轮廓上的「珠子位」。只在 MORPH 从 0 起步时做一次。 */
+  function assignEnd() {
+    if (!ENn || !ENc.length) return;
+    var i, c;
+
+    /* 先排出所有珠子位：每条轮廓按 want 个分层取相位。
+       分层 + 抖动，而不是纯随机 —— 纯随机会在某几段留下明显的空档，
+       而完全等距又太整齐，没有参考图里那种成簇的感觉。 */
+    var slots = [];
+    for (i = 0; i < ENc.length; i++) {
+      c = ENc[i];
+      for (var k = 0; k < c.want; k++) {
+        var ph = (k + Math.random() * 0.9) / c.want;
+        if (ph >= 1) ph -= 1;
+        slots.push({ c: i, ph: ph });
+      }
+    }
+
+    /* 挑星：按 EN_NEARQ 的比例优先从近景层抽。
+       近景层才有光晕贴图和 hero 的十字芒，也就是参考图里那些「亮斑」；
+       中景层只有裸点。全从最近的星里挑的话会几乎全是中景（数量压倒性），
+       字就只剩一串均匀小点，没有明暗层次。 */
+    var ey = endY();
+    function byDist(arr) {
+      var a = arr.slice();
+      for (var j = 0; j < a.length; j++) {
+        var ddx = a[j].x - W / 2, ddy = a[j].y - ey;
+        a[j]._d2 = ddx * ddx + ddy * ddy;
+      }
+      a.sort(function (p, q) { return p._d2 - q._d2; });
+      return a;
+    }
+    var want = Math.min(slots.length, mid.length + near.length);
+    var wNear = Math.min(near.length, Math.round(want * EN_NEARQ));
+    var use = byDist(near).slice(0, wNear)
+                .concat(byDist(mid).slice(0, want - wNear));
+    var n = Math.min(use.length, slots.length);
+    if (!n) return;
+
+    /* 按 x 对位配：左边的星去左边的笔画，飞行路径基本不交叉。
+       珠子位的 x 用相位 0 处的坐标代表。 */
+    use.sort(function (p, q) { return p.x - q.x; });
+    slots.sort(function (p, q) {
+      return ENc[p.c].px[Math.floor(p.ph * ENc[p.c].n)] -
+             ENc[q.c].px[Math.floor(q.ph * ENc[q.c].n)];
+    });
+    var jit = enSize * EN_JIT;
+    for (i = 0; i < n; i++) {
+      var d = use[i], s = slots[i];
+      d.cp = s.c;
+      d.cph = s.ph;
+      /* 横向抖动按亮度反相关：亮星贴紧笔画（字形靠它们立住），
+         暗星散开成一层绒毛。参考图里就是这个结构 ——
+         亮珠子串成清晰的线，细碎的小点在周围铺开。
+         但「绒毛」必须是少数派：抖动一视同仁地放大时，
+         占多数的中等亮度星会整体散开，字就糊了（实测抖动给到
+         字号的 5% 时，只有 46% 的珠子还落在笔画 4px 内；
+         收到 2.2% 则是 99%，而且轮廓覆盖率反而更高）。
+         所以这里分两种角色：绝大多数贴线，只有 EN_FUZZ 比例的
+         暗星额外散开 EN_FUZZW 倍——它们本来就暗，不影响字形。 */
+      var fz = (d.bw < 0.5 && Math.random() < EN_FUZZ) ? EN_FUZZW : 1;
+      d.cj = (Math.random() - 0.5) * 2 * jit * (1 - d.bw * 0.72) * fz;
+      d.cv = 1 + (Math.random() - 0.5) * 2 * EN_SPDV;
+      d.sg = n > 1 ? i / (n - 1) : 0;           // 从左往右依次落位
+    }
+    ENn = n;
+    enAssigned = true;
+  }
+
+  /* 第 cp 条轮廓上、相位 ph 处的坐标，带法线方向的横向偏移。
+     写进 enGx / enGy，避免每帧为每颗星新建对象。 */
+  var enGx = 0, enGy = 0;
+  function enTarget(d, now) {
+    var c = ENc[d.cp];
+    // 相位按弧长推进，所以不同周长的环上珠子的线速度一致
+    var ph = d.cph + now * EN_FLOW * d.cv / c.len;
+    ph -= Math.floor(ph);
+    var fi = ph * c.n;
+    var i0 = Math.floor(fi) % c.n, i1 = (i0 + 1) % c.n, f = fi - Math.floor(fi);
+    var x = c.px[i0] + (c.px[i1] - c.px[i0]) * f;
+    var y = c.py[i0] + (c.py[i1] - c.py[i0]) * f;
+    enGx = x + c.nx[i0] * d.cj;
+    enGy = y + c.ny[i0] * d.cj;
+  }
+
+  function clearEnd() {
+    var i;
+    for (i = 0; i < mid.length; i++) mid[i].cp = -1;
+    for (i = 0; i < near.length; i++) near[i].cp = -1;
+    enAssigned = false;
+  }
+
+  /* 注入跑道。reduced-motion 下不注入 —— 那种模式不做汇聚，
+     留半屏空白纯属添乱。浅色模式靠 CSS 把高度收成 0。 */
+  function ensurePad() {
+    if (reduced || padEl) return;
+    var wrap = document.querySelector('.wrap');
+    if (!wrap) return;
+    padEl = document.createElement('div');
+    padEl.className = 'endpad';
+    padEl.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(padEl);
+  }
+
+  // 量跑道的位置。会引起 reflow，所以只在 build / resize / 低频校准时调
+  function measPad() {
+    if (!padEl) { padTop = padH = 0; return; }
+    padH = padEl.offsetHeight;
+    var r = padEl.getBoundingClientRect();
+    padTop = r.top + scrollY();
+  }
+
+  /* 正文列压暗：星场密度上来之后会和文字抢视线，
+     所以每帧画完星星后，用 destination-out 在正文列上「擦掉」大部分星点。
+     宽屏按正文列宽（1080 + 左右留白）做横向渐变，窄屏正文占满则整体压一档。 */
+  var punch = null, punchFlat = 0, punchAt = null;
+  /* CUT 现在是「抽掉多少比例」，不是「压暗多少」。
+     0.82 = 正文列只留 18% 的星，但这 18% 是满亮度的。 */
+  var COL = 1080, PAD = 32, CUT = 0.82;
+
+  function buildPunch() {
+    punch = null; punchFlat = 0; punchAt = null;
+    var colW = Math.min(COL + PAD * 2, W);
+    var side = (W - colW) / 2;                 // 单侧留白
+    // 留白太窄（窄屏/移动端）就没法分列，整体压一档
+    if (side < 40) {
+      punchFlat = 0.42;
+      punchAt = function () { return 0.55; };   // 窄屏整体抽稀一档
+      return;
+    }
+    // 羽化跟着留白走，保证两侧还能留出真正「密」的一段
+    var fea = Math.max(40, Math.min(150, side * 0.62));
+    var x0 = side, x1 = side + colW;
+    var g = ctx.createLinearGradient(0, 0, W, 0);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(Math.max(0, (x0 - fea) / W), 'rgba(0,0,0,0)');
+    g.addColorStop(x0 / W, 'rgba(0,0,0,' + CUT + ')');
+    g.addColorStop(x1 / W, 'rgba(0,0,0,' + CUT + ')');
+    g.addColorStop(Math.min(1, (x1 + fea) / W), 'rgba(0,0,0,0)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    punch = g;
+    // 同一条曲线的解析版本，供活动层逐颗取值，和烘焙层的渐变保持一致
+    punchAt = function (x) {
+      if (x <= x0 - fea || x >= x1 + fea) return 0;
+      if (x >= x0 && x <= x1) return CUT;
+      if (x < x0) return CUT * (x - (x0 - fea)) / fea;
+      return CUT * ((x1 + fea) - x) / fea;
+    };
+  }
+
+  // 只作用于烘焙好的远景层；活动层已在 step() 里逐颗压暗
+  function applyPunch() {
+    if (!punch && !punchFlat) return;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = punch || 'rgba(0,0,0,' + punchFlat + ')';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  function step(arr, now, withHalo) {
+    // 跑道中心只算一次，不必每颗星都读一遍滚动位置
+    var enY = MORPH > 0 ? endY() : 0;
+    for (var i = 0; i < arr.length; i++) {
+      var d = arr[i];
+      var near0 = 0;                     // 0~1，离光标多近
+      /* 本帧起点 = 基准漂移位置 + 光标造成的偏移。
+         受力和绘制都用这个合成位置。 */
+      var px = d.x + d.ox, py = d.y + d.oy;
+
+      if (active) {
+        var ax = px - mx, ay = py - my;
+        var dist = Math.sqrt(ax * ax + ay * ay);
+        if (dist < RADIUS) {
+          var k = 1 - dist / RADIUS;
+          near0 = k * k;
+          if (dist > 0.5) {
+            /* 汇聚过程中光标推力按 (1-MORPH) 衰减：
+               字成形之后还被光标推来推去就不成字了。
+               组好之后光标仍能提亮（见下面的 LIFT），只是推不动。 */
+            var f = near0 * PUSH * d.par * (1 - MORPH);
+            d.vx += (ax / dist) * f;
+            d.vy += (ay / dist) * f;
+          }
+        }
+      }
+
+      // 点击涟漪：只推波前那一圈
+      for (var q = 0; q < pulses.length; q++) {
+        var pu = pulses[q];
+        var rad = (now - pu.t) * PULSE_SPEED;
+        var bx = px - pu.x, by = py - pu.y;
+        var bd = Math.sqrt(bx * bx + by * by);
+        var off = Math.abs(bd - rad);
+        if (off < PULSE_BAND && bd > 0.5) {
+          var fade = 1 - (now - pu.t) / PULSE_LIFE;
+          var pf = (1 - off / PULSE_BAND) * fade * PULSE_FORCE * d.par;
+          if (pf > 0) { d.vx += (bx / bd) * pf; d.vy += (by / bd) * pf; }
+        }
+      }
+
+      /* 弹簧把偏移往 0 拉，所以光标推开是暂时的、松开会滑回来。
+         以前推力直接改 d.x/d.y，位移永久累积 —— 光标按住十秒，
+         半径内的星会从 94 颗掉到 55 颗，场被真的掏空，连线也就没了。 */
+      d.vx -= d.ox * SPRING;
+      d.vy -= d.oy * SPRING;
+      d.vx *= DAMP; d.vy *= DAMP;
+      var sp = Math.sqrt(d.vx * d.vx + d.vy * d.vy);
+      if (sp > VMAX) { d.vx = d.vx / sp * VMAX; d.vy = d.vy / sp * VMAX; }
+
+      d.ox += d.vx;
+      d.oy += d.vy;
+      // 偏移封顶，避免涟漪叠加时把星甩得太远
+      if (d.ox > OMAX) d.ox = OMAX; else if (d.ox < -OMAX) d.ox = -OMAX;
+      if (d.oy > OMAX) d.oy = OMAX; else if (d.oy < -OMAX) d.oy = -OMAX;
+
+      // 基准位置只做匀速漂移，与光标无关，所以密度长期恒定
+      d.x += d.dx;
+      d.y += d.dy;
+      if (d.x < -12) d.x = W + 12; else if (d.x > W + 12) d.x = -12;
+      if (d.y < -12) d.y = H + 12; else if (d.y > H + 12) d.y = -12;
+
+      // 绘制用的合成位置（本帧偏移已更新）
+      px = d.x + d.ox; py = d.y + d.oy;
+
+      /* ---- 滚到底：往「end」的目标点收 ----
+         mg 是这颗星自己的进度：按 sg 错峰，所以字是从左往右长出来的。
+         位置用插值而不是改 d.x/d.y —— 漂移基准不动，往上滚回去时
+         星会自己散回原来的轨迹上，密度也不会被永久改掉。 */
+      var mg = 0;
+      if (MORPH > 0 && d.cp >= 0) {
+        mg = (MORPH - d.sg * EN_STAG) / (1 - EN_STAG);
+        if (mg < 0) mg = 0; else if (mg > 1) mg = 1;
+        if (mg > 0) {
+          var ease = 1 - Math.pow(1 - mg, 3);          // ease-out cubic
+          /* 目标点是「活」的：相位随时间推进，所以 mg=1 之后星不是
+             钉在一个坐标上，而是继续沿着轮廓走 —— 这就是流动。
+             mg<1 时插值追一个移动的目标，看起来像被吸进了那条流里。 */
+          enTarget(d, now);
+          px += (W / 2 + enGx - px) * ease;
+          py += (enY + enGy - py) * ease;
+        }
+      }
+
+      // 呼吸：下限抬到 0.72，之前 0.55 让一半时间都在偏暗的区间
+      var al = d.a * (0.72 + 0.28 * Math.sin(now * d.tw + d.ph));
+      /* 提亮对亮星减半：本来就亮的星再加 0.55 等于顶到 1.0，
+         压在正文上时局部均值会破 0.3。暗星提亮的观感收益也更大。 */
+      if (near0 > 0) al = Math.min(1, al + near0 * LIFT * (1 - d.bw * 0.5));
+
+      /* 汇聚时的亮度：
+         - 不参与组字的星随 MORPH 淡出，否则字会埋在满屏星点里看不出来；
+         - 参与的星在飞行途中压一档（这段路会经过正文和图集上空），
+           落到跑道里之后才给满亮度。 */
+      if (MORPH > 0) {
+        if (d.cp < 0) {
+          al *= 1 - MORPH;
+        } else if (mg > 0) {
+          al *= 1 - EN_DIM * (1 - mg);
+        }
+      }
+
+      /* 正文列：抽稀而非压暗。
+         抽签号低于当前位置的阈值就整颗跳过，留下的保持满亮度。
+         光标附近按 RELIEF 放宽阈值，所以光标扫过会把星「召回来」。
+         阈值边缘留一段 FADE 做渐隐，否则星点横向飘过边界会突然闪现。 */
+      if (punchAt) {
+        /* 阈值按亮度加权：BWBIAS 把最亮的星的阈值抬到 1.55 倍、
+           最暗的压到 0.75 倍。等于说正文列上先抽亮星，暗星多留一些，
+           总数基本不变（亮星本来就是少数），但局部峰值降一大截。
+           封顶 1 之后，正文列正中的 hero 星是必然被抽掉的。 */
+        /* 「召回」也按亮度打折：光标扫过正文时，放宽阈值会把亮星
+           重新拉回文字上方，实测这会让光标半径内的对比度掉到 3.3:1。
+           亮星几乎不召回，暗星照旧 —— 光标周围仍然会变密，
+           只是密的是小星点而不是 hero。 */
+        var rel = near0 * RELIEF * (1 - d.bw * 0.82);
+        /* 组字的星必须免除正文列抽稀，否则就白组了：
+           「end」正落在正文列的横向范围内，而那里只留 18% 的星 ——
+           字会被抽成筛子。用 mg*2.2 封顶 1，所以 mg 到 0.45 就全免。
+           免除的代价由上面的 EN_DIM 抵掉：飞行途中压暗，
+           落位之后才给满 —— 而落位点在跑道里，那里没有正文。 */
+        if (mg > 0) rel = Math.max(rel, Math.min(1, mg * 2.2));
+        var th = punchAt(px) * (1 - rel) * (0.75 + d.bw * BWBIAS);
+        if (th > 1) th = 1;
+        if (th > 0) {
+          var margin = d.key - th;
+          if (margin < 0) continue;                       // 被抽掉
+          if (margin < FADE) al *= margin / FADE;         // 边界渐隐
+        }
+      }
+      if (al <= 0.012) continue;
+
+      /* 存一份光标附近的近景星，供连线用。
+         放在抽稀判定之后，所以被抽掉的星不会凭空长出线来。 */
+      if (withHalo && near0 > 0.05 && linkN < LINK_MAX) {
+        var slot = linkBuf[linkN++];
+        slot.x = px; slot.y = py; slot.n = near0;
+      }
+
+      if (withHalo) {
+        var size = d.r * 10;
+        ctx.globalAlpha = al * 0.55;
+        ctx.drawImage(halos[d.ci], px - size / 2, py - size / 2, size, size);
+        // 主星加一道十字芒，画面里有了可以落眼的锚点
+        if (d.hero) {
+          var sl = d.r * 13;
+          ctx.globalAlpha = al * 0.5;
+          ctx.drawImage(spikes[d.ci], px - sl / 2, py - sl / 2, sl, sl);
+        }
+      }
+      ctx.globalAlpha = al;
+      ctx.fillStyle = rgba(d.ci, 1);
+      // 1.15 以下走 fillRect：arc 要建路径，比 fillRect 贵不少，
+      // 而这个尺寸下两者在屏幕上看不出差别
+      if (d.r < 1.15) {
+        // 小点：fillRect 比 arc 便宜，亚像素下看不出区别
+        var w2 = d.r * 2;
+        ctx.fillRect(px - d.r, py - d.r, w2, w2);
+      } else {
+        ctx.beginPath();
+        ctx.arc(px, py, d.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  /* 把收集到的近景星两两连线。n 上限 14，最多 91 次比较，可以忽略。
+     线的亮度取两端「离光标多近」的较小值，所以越靠光标中心线越实，
+     边缘的线自然淡出，不会在半径边界上出现硬断。 */
+  function drawLinks() {
+    if (linkN < 2) return;
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(164,205,251,1)';
+    /* 逐段 stroke。globalAlpha 是在 stroke() 时取值的，
+       攒成一条路径再统一描会让所有线用同一个 alpha ——
+       那样逐段的距离渐隐就全白写了。最多 91 段，开销可忽略。 */
+    for (var i = 0; i < linkN; i++) {
+      for (var j = i + 1; j < linkN; j++) {
+        var a = linkBuf[i], b = linkBuf[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 > LINK_D2) continue;
+        var k = (1 - Math.sqrt(d2) / LINK_DIST) * Math.min(a.n, b.n);
+        if (k <= 0.02) continue;
+        /* 正文列上的线压一档：阅读时光标常常就停在文字上，
+           淡蓝线横穿正文会干扰认字；留白区则给满。 */
+        var ldim = punchAt ? 1 - punchAt((a.x + b.x) / 2) * 0.62 : 1;
+        ctx.globalAlpha = k * LINK_A * ldim;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  function spawnMeteor(now) {
+    // 从画面上半部任一点起步，朝右下或左下斜切
+    var toLeft = Math.random() < 0.4;
+    var ang = (toLeft ? Math.PI - 0.62 : 0.62) + (Math.random() - 0.5) * 0.3;
+    var sp = 0.42 + Math.random() * 0.26;         // px/ms
+    meteors.push({
+      x: Math.random() * W * (toLeft ? 1 : 0.85) + (toLeft ? 0 : -W * 0.05),
+      y: Math.random() * H * 0.45,
+      vx: Math.cos(ang) * sp,
+      vy: Math.sin(ang) * sp,
+      t: now,
+      ci: Math.random() < 0.75 ? 1 : 2,           // 冷白或淡蓝
+      len: 95 + Math.random() * 65
+    });
+    mtNext = now + 9000 + Math.random() * 10000;
+  }
+
+  function drawMeteors(now) {
+    for (var i = meteors.length - 1; i >= 0; i--) {
+      var m = meteors[i];
+      var age = now - m.t;
+      if (age > MT_LIFE) { meteors.splice(i, 1); continue; }
+      var p = age / MT_LIFE;
+      // 前 15% 淡入，后 45% 淡出，中间满亮
+      var env = p < 0.15 ? p / 0.15 : (p > 0.55 ? (1 - p) / 0.45 : 1);
+      var hx = m.x + m.vx * age, hy = m.y + m.vy * age;
+      if (hx < -140 || hx > W + 140 || hy > H + 140) { meteors.splice(i, 1); continue; }
+
+      // 正文列上空压一档，别从字上面划过去太抢眼
+      /* 拖尾和头部亮斑分开压。
+         失分的只有头部那个 17px 实心亮斑：它压在正文上时 9x9 局部均值
+         到 0.27，对正文色仅 2.6:1，低于 WCAG AA 的 4.5。拖尾是 2px 细线，
+         对局部均值几乎没贡献。
+         而 punchAt 峰值是 0.82、羽化后满亮度区只剩屏幕两侧各 56px，
+         所以「整条流星一起压」等于在 92% 的画面上把它压掉四分之三 ——
+         那就不剩什么可看的了。拖尾才是「划过去」的观感来源，留住它。 */
+      var pk = punchAt ? punchAt(hx) : 0;
+      // 汇聚时整条淡出，别在成字的画面上横切一道
+      var mdim = 1 - MORPH;
+      var base = 0.92 * env * (1 - pk * MT_TDIM) * mdim;
+      var gbase = 0.92 * env * (1 - pk * MT_GDIM) * mdim;
+      if (base <= 0.01) continue;
+
+      var ux = m.vx, uy = m.vy;
+      var ul = Math.sqrt(ux * ux + uy * uy) || 1;
+      ux /= ul; uy /= ul;
+
+      /* 拖尾用几段描线而不是一串小方块：
+         尾巴长到 160px 时，小方块之间会露出间隙看成虚线。
+         圆头线帽让相邻段自然接上，顺便把绘制笔数从 30 降到 8。 */
+      ctx.strokeStyle = rgba(m.ci, 1);
+      ctx.lineCap = 'round';
+      /* 正文列上「变细」而不是「变暗」。
+         圆头线帽会把相邻段叠成一条约 2.7px 宽的实心亮条，沿轴方向的
+         9x9 局部均值很高 —— 实测只靠压暗，压到 0.92 都还有 2/6 不过线。
+         改成压宽度：覆盖面积随宽度线性降，而「划过去」的观感主要来自
+         亮度和长度，细一点几乎看不出区别。 */
+      var tw = 1 - pk * MT_TNARROW;
+      for (var s = 0; s < MT_TRAIL; s++) {
+        var f0 = s / MT_TRAIL, f1 = (s + 1) / MT_TRAIL;
+        var g0 = 1 - f0;
+        ctx.globalAlpha = base * g0 * g0;
+        ctx.lineWidth = (g0 * 2.3 + 0.4) * tw;
+        ctx.beginPath();
+        ctx.moveTo(hx - ux * m.len * f0, hy - uy * m.len * f0);
+        ctx.lineTo(hx - ux * m.len * f1, hy - uy * m.len * f1);
+        ctx.stroke();
+      }
+      ctx.lineCap = 'butt';
+      ctx.lineWidth = 1;
+      // 头部光晕
+      var gs = 17;
+      // 头部亮斑用单独的 gbase，正文列上压得比拖尾狠得多
+      ctx.globalAlpha = gbase * 0.48;
+      ctx.drawImage(halos[m.ci], hx - gs / 2, hy - gs / 2, gs, gs);
+    }
+  }
+
+  var last = 0;
+  function frame(now) {
+    var dt = last ? Math.min(now - last, 50) : 16;
+    last = now;
+    ctx.clearRect(0, 0, W, H);
+
+    /* ---- 汇聚进度 ----
+       目标值直接由滚动位置算，所以往上滚会原路散开 —— 不是一次性触发。
+       再做一道平滑：滚轮是跳变的，直接用会让字一顿一顿地长。
+       另外浏览器恢复滚动位置时是「一上来就在底部」，平滑能让它
+       从散开状态长出来，而不是首帧就摆好。 */
+    var mT = endProg();
+    MORPH += (mT - MORPH) * 0.085;
+    if (MORPH < 0.002 && mT === 0) MORPH = 0;
+
+    if (MORPH > 0 && !enAssigned) assignEnd();
+    else if (MORPH === 0 && enAssigned) clearEnd();
+
+    // 远景整层缓慢上移，两次贴图接缝处循环
+    farOff = (farOff + dt * FAR_SPEED) % H;
+    /* 烘焙层是静态贴图，没法参与组字，所以汇聚时整层淡出。
+       留着的话字会糊在一片底噪里 —— 它恰好是「糊成一片」的主力。 */
+    var fa = 1 - MORPH;
+    if (fa > 0.01) {
+      ctx.globalAlpha = fa;
+      ctx.drawImage(far, 0, -farOff, W, H);
+      ctx.drawImage(far, 0, H - farOff, W, H);
+      // 压暗只针对远景底噪，活动层自己在 step() 里按光标免除
+      applyPunch();
+    }
+    ctx.globalAlpha = 1;
+
+    /* 光标插值跟随：快速划过时推力会沿路径铺开，而不是只在终点推一下 */
+    if (active) {
+      if (!hasPt) { mx = tmx; my = tmy; hasPt = true; }
+      else { mx += (tmx - mx) * 0.22; my += (tmy - my) * 0.22; }
+    }
+    // 清掉过期涟漪
+    for (var p = pulses.length - 1; p >= 0; p--) {
+      if (now - pulses[p].t > PULSE_LIFE) pulses.splice(p, 1);
+    }
+
+    linkN = 0;                       // 每帧重新收集，不跨帧累积
+    step(mid, now, false);
+    step(near, now, true);
+    /* 汇聚一开始就停连线：星在往目标点飞，连线会把整个字
+       织成一张网，笔画就读不出来了。 */
+    if (active && MORPH < 0.08) drawLinks();
+
+    // 流星：首次进来先排一个较短的等待，别一上来就划
+    if (!mtNext) mtNext = now + 2600 + Math.random() * 3000;
+    // 汇聚中不再排新流星；已经在飞的让它随 MORPH 淡出，不硬切
+    if (now >= mtNext && meteors.length < 2 && MORPH < 0.3) spawnMeteor(now);
+    drawMeteors(now);
+
+    ctx.globalAlpha = 1;
+    raf = requestAnimationFrame(frame);
+  }
+
+  function start() { if (!raf) raf = requestAnimationFrame(frame); }
+  function stop()  { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+  function aim(x, y) { tmx = x; tmy = y; active = true; }
+  function leave() { active = false; hasPt = false; }
+
+  document.addEventListener('pointermove', function (e) {
+    aim(e.clientX, e.clientY);
+  }, { passive: true });
+  /* 触摸也给一点反馈：手指滑动时同样推开星点 */
+  document.addEventListener('touchmove', function (e) {
+    var t0 = e.touches && e.touches[0];
+    if (t0) aim(t0.clientX, t0.clientY);
+  }, { passive: true });
+  document.addEventListener('touchend', leave, { passive: true });
+  /* 点击 / 轻触扩一圈涟漪 */
+  document.addEventListener('pointerdown', function (e) {
+    aim(e.clientX, e.clientY);
+    if (pulses.length < 4) {
+      pulses.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+    }
+  }, { passive: true });
+  /* pointerleave 挂在 window 上在部分浏览器不触发，用 document + mouseout 兜底 */
+  document.addEventListener('pointerleave', leave);
+  document.addEventListener('mouseout', function (e) {
+    if (!e.relatedTarget && !e.toElement) leave();
+  });
+  window.addEventListener('blur', leave);
+
+  var t = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(t); t = setTimeout(function () { if (!isLight()) build(); }, 180);
+  });
+
+  /* 跑道位置的低频校准。
+     frame() 每帧只读 pageYOffset（不触发 reflow），跑道的
+     offsetTop / offsetHeight 则缓存着 —— 但图片陆续加载完、
+     入场动画改变布局都会让它失效，所以滚动时最多每 400ms 重量一次。
+     直接在每帧读 getBoundingClientRect 会把布局算进渲染热路径。 */
+  var mt0 = 0;
+  window.addEventListener('scroll', function () {
+    var n2 = Date.now();
+    if (n2 - mt0 < 400) return;
+    mt0 = n2;
+    if (!isLight()) measPad();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else if (!isLight()) start();
+  });
+
+  function isLight() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
+  function drawStill() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    ctx.drawImage(far, 0, 0, W, H);
+    applyPunch();
+    linkN = 0;
+    step(mid, 0, false);
+    step(near, 0, true);
+    // 静帧不画连线和流星：reduced-motion 下不该有动态元素
+  }
+
+  /* 浅色模式下 #dots 是 display:none，clientWidth 为 0，
+     所以此时不能烘焙（会烘出空图）；切回深色再按真实尺寸重建。 */
+  function sync() {
+    if (isLight()) { stop(); return; }
+    if (!W || !H || W !== cv.clientWidth || H !== cv.clientHeight) build();
+    if (reduced) drawStill(); else start();
+  }
+  new MutationObserver(sync).observe(document.documentElement,
+    { attributes: true, attributeFilter: ['data-theme'] });
+
+  sync();
+})();
+</script>
+</body>
+</html>

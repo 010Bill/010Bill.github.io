@@ -703,14 +703,15 @@
   }
 </style>
 <script>
-  /* 在首次绘制前定主题，否则深色用户会先闪一下浅色。
-     优先级：手动选过的 > 系统偏好 > 深色 */
+  /* 在首次绘制前定主题，否则会先闪一帧错的颜色。
+     优先级：手动选过的 > 深色。
+     这里刻意不看系统的 prefers-color-scheme —— 深色是这个页面的默认形态
+     （星空背景、end 的流动星点都只在深色下出现），所以白天开着浅色系统
+     的访客也应该先看到深色版，想换再自己点右上角那个按钮。 */
   (function () {
     var t = null;
     try { t = localStorage.getItem('theme'); } catch (e) {}
-    if (t !== 'light' && t !== 'dark') {
-      t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
+    if (t !== 'light' && t !== 'dark') t = 'dark';
     document.documentElement.setAttribute('data-theme', t);
     /* 入场动画的隐藏态挂在 .js-rv 下，这里加类。
        放在首绘前，否则内容会先显示一下再被藏起来闪一帧；
@@ -1045,8 +1046,6 @@
   var btn = document.getElementById('theme-btn');
   if (!btn) return;
   var icon = btn.querySelector('i');
-  var manual = false;
-  try { var v = localStorage.getItem('theme'); manual = (v === 'light' || v === 'dark'); } catch (e) {}
 
   function paint() {
     var light = root.getAttribute('data-theme') === 'light';
@@ -1067,16 +1066,13 @@
 
   btn.addEventListener('click', function () {
     var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    manual = true;
     try { localStorage.setItem('theme', next); } catch (e) {}
     apply(next);
   });
 
-  /* 没手动选过的话，跟随系统切换 */
-  var mq = window.matchMedia('(prefers-color-scheme: light)');
-  var onSys = function (e) { if (!manual) apply(e.matches ? 'light' : 'dark'); };
-  if (mq.addEventListener) mq.addEventListener('change', onSys);
-  else if (mq.addListener) mq.addListener(onSys);
+  /* 这里原来有个 prefers-color-scheme 的监听，访客没手动选过时会跟着系统切。
+     既然默认固定深色，它就得去掉：否则访客中途切了系统主题，页面会自己
+     跳成浅色，跟「默认深色」矛盾。现在主题只有一个入口 —— 右上角那个按钮。 */
 })();
 </script>
 
